@@ -9,7 +9,7 @@
 	    {
 	      "matches": ["https://gatech.courseoff.com/*"],
 	      "css": ["app.css"],
-	      "js": ["http://code.jquery.com/jquery-1.11.2.min.js", 
+	      "js": ["jquery-1.11.2.min.js", 
 	      	"app.js", 
 	      	"dataparser.js"
 	      ]
@@ -17,7 +17,6 @@
 	],
 
 	"permissions": [
-		"https://gatech.courseoff.com/*", 
-		"http://code.jquery.com/*"
+		"https://gatech.courseoff.com/*"
 	]
 }
