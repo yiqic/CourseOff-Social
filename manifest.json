@@ -1,0 +1,19 @@
+{
+	"manifest_version": 2,
+
+	"name": "CourseOffSocial",
+	"description": "CourseOffSocial",
+	"version": "1.0",
+
+	"content_scripts": [
+	    {
+	      "matches": ["https://gatech.courseoff.com/*"],
+	      "css": ["styles.css"],
+	      "js": ["jquery.js", "script.js"]
+	    }
+	],
+
+	"permissions": [
+		"https://gatech.courseoff.com/*"
+	]
+}
