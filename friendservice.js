@@ -61,7 +61,16 @@ var userService = {
 			}
 			return allFriends;
 		} else {
-			return this.getFriendsByCourseNameHelper(termObject, majorIdent, courseIdent);
+			var allFriends = [];
+			for(var pastTerm in this.schedules){
+				if(Number(pastTerm) > Number(term)){
+					var friends = this.getFriendsByCourseNameHelper(this.schedules[pastTerm], majorIdent, courseIdent);
+					for(var i=0; i<friends.length; i++){
+						allFriends.push(friends[i]);
+					}
+				}
+			}
+			return allFriends;
 		}
 	},
 	getFriendsByCourseNameHelper : function(termObject, majorIdent, courseIdent){
