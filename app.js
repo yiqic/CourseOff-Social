@@ -17,13 +17,13 @@ $(document).ready(function() {
 
 	var fadeOwnSchedule = function() {
 		$(".course-box").each(function(i, d) {
-			$(d).css("opacity", 0.3);
+			$(d).css("opacity", 0.2);
 		});
 	}
 
 	var addFriendToggle = function(){
 	    $(".friends").find(".course-info-container").each(function(i){
-	        var toggleButton = $(this).find(".pull-right").first().append("<button style='float:right;top:0px' on-click='test()'>+</button>");
+	        var toggleButton = $(this).find(".pull-right").first().append("<button style='float:right;top:0px'>+</button>");
 	        var that = this;
 	        toggleButton.click(function(ev){
 	        	fadeOwnSchedule();
@@ -89,34 +89,34 @@ $(document).ready(function() {
 	}
 
 	// setTimeout(function(){
-	    var courseSelect = $(".nav[data-visible=term]").find("a:not([data-toggle])");
-	    courseSelect.each(function(i){
-	        $(this).on("click", function(){
-	            setTimeout(function(){
-	                addCourseInfoListener();
-	                findCurrentTerm();
-	            }, 1000);
-	        })
-	    })
-	    var atlSelect = $(".nav[data-visible=user]").find(".item");
-	    atlSelect.each(function(i){
-	        $(this).on("click", function(){
-	            setTimeout(function(){
-	                addFriendToggle();
-	            }, 1000);
-	        })
-	    })
-	    
-	    var newAtlSelect = $(".nav[data-visible=user]").find(".li-icon")
-	    newAtlSelect.click(function(){
-	        setTimeout(function(){
-	                addFriendToggle();
-	            }, 1000);
-	    })
+    var courseSelect = $(".nav[data-visible=term]").find("a:not([data-toggle])");
+    courseSelect.each(function(i){
+        $(this).on("click", function(){
+            setTimeout(function(){
+                addCourseInfoListener();
+                findCurrentTerm();
+            }, 1000);
+        })
+    })
+    var atlSelect = $(".nav[data-visible=user]").find(".item");
+    atlSelect.each(function(i){
+        $(this).on("click", function(){
+            setTimeout(function(){
+                addFriendToggle();
+            }, 1000);
+        })
+    })
+    
+    var newAtlSelect = $(".nav[data-visible=user]").find(".li-icon")
+    newAtlSelect.click(function(){
+        setTimeout(function(){
+                addFriendToggle();
+            }, 1000);
+    })
 
-	    addCourseInfoListener();
-	    findCurrentTerm();
-	    addFriendToggle();
+    addCourseInfoListener();
+    findCurrentTerm();
+    addFriendToggle();
 	    
 	// }, 2000);
 
