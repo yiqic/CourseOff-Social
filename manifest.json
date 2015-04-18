@@ -2,17 +2,19 @@
 	"manifest_version": 2,
 
 	"name": "CourseOffSocial",
-	"description": "CourseOffSocial",
+	"description": "To view friends who are taking/have taken the same class with you",
 	"version": "1.0",
+	"author": "Jialiang (Jason) Zhang, Yiqi (Victor) Chen, Haoli Du", 
+	"icons": { "24": "favicon.ico" }, 
 
 	"content_scripts": [
 	    {
 	      "matches": ["https://gatech.courseoff.com/*"],
 	      "css": ["app.css"],
 	      "js": ["jquery-1.11.2.min.js", 
-	      	"app.js", 
 	      	"dataparser.js", 
-	      	"friendservice.js"
+	      	"friendservice.js", 
+	      	"app.js"
 	      ]
 	    }
 	],
