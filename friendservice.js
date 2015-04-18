@@ -11,7 +11,7 @@ var userService = {
 	},
 	getFriendScheduleById : function(id){
 		if(!this.ready){
-			console.log('Not ready when getFriendScheduleById');
+			// console.log('Not ready when getFriendScheduleById');
 			return null;
 		}
 		for(var i=0; i < rawSchedules.length; i++){
@@ -24,29 +24,29 @@ var userService = {
 	},
 	getFriendsByCourseId : function(id){
 		if(!this.ready){
-			console.log('Not ready when getFriendScheduleById');
+			// console.log('Not ready when getFriendScheduleById');
 			return null;
 		}
 
 	},
 	getFriendsByCourseName : function(term, courseName, past){
 		if(!this.ready){
-			console.log('Not ready when getFriendScheduleById');
+			// console.log('Not ready when getFriendScheduleById');
 			return null;
 		}
 		var courseName = courseName.split('-');
 		if( courseName.length != 2 ){
-			console.log('Invalid courseName: ' + courseName);
+			// console.log('Invalid courseName: ' + courseName);
 			return null;
 		}
-		if(!term){
-			console.log('Term not defined: ' + term);
-		}
+		// if(!term){
+		// 	console.log('Term not defined: ' + term);
+		// }
 		var majorIdent = courseName[0];
 		var courseIdent = courseName[1];
 		var termObject = this.schedules[term];
 		if(!termObject){
-			console.log('Term not found: ' + term);
+			// console.log('Term not found: ' + term);
 			return null;
 		}
 		if(past){
@@ -80,7 +80,7 @@ var userService = {
 				courseFound = true;
 				var sections = termObject[t].sections;
 				if(!sections){
-					console.log('Sections not defined for course: ' + courseName);
+					// console.log('Sections not defined for course: ' + courseName);
 					return null;
 				}
 				var sectionKeys = Object.keys(sections);
@@ -109,8 +109,8 @@ var userService = {
 	consumeSchedule: function(id, schedule){
 		var oneSchedule = schedule[0];
 		if(!oneSchedule.owner_id){
-			console.log('Structure for schedule is not as expected: ');
-			console.log(oneSchedule);
+			// console.log('Structure for schedule is not as expected: ');
+			// console.log(oneSchedule);
 			return;
 		}
 		for(var i=0; i < this.friendsList.length; i++){
@@ -124,9 +124,9 @@ var userService = {
 			}
 		}
 		if( this.rawSchedules.length === this.friendsList.length ){
-			console.log(this.rawSchedules);
+			// console.log(this.rawSchedules);
 			this.schedules = parseSchedule(this.rawSchedules);
-			console.log(this.schedules);
+			// console.log(this.schedules);
 			this.ready = true;
 		}
 	}
