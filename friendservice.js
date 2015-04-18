@@ -29,6 +29,53 @@ var userService = {
 		}
 
 	},
+	getFriendsByCourseName : function(term, courseName){
+		if(!this.ready){
+			console.log('Not ready when getFriendScheduleById');
+			return null;
+		}
+		var courseName = courseName.split('-');
+		if( courseName.length != 2 ){
+			console.log('Invalid courseName: ' + courseName);
+			return null;
+		}
+		if(!term){
+			console.log('Term not defined: ' + term);
+		}
+		var majorIdent = courseName[0];
+		var courseIdent = courseName[1];
+		var termObject = this.schedules[term];
+		if(!termObject){
+			console.log('Term not found: ' + term);
+			return null;
+		}
+		var courseFound = false;
+		for(var t=0; t<termObject.length; t++){
+			if(termObject.major_ident === major_ident
+				&& termObject.course_ident === courseIdent){
+				courseFound = true;
+				var sections = termObject.sections;
+				if(!sections){
+					console.log('Sections not defined for course: ' + courseName);
+					return null;
+				}
+				var sectionKeys = Object.keys(sections);
+				var friends = [];
+				for(var i=0; i<sectionKeys.length; i++){
+					var sectionFriends = sections[sectionKeys[i]];
+					for(var j=0; j<sectionFriends.length; j++){
+						for(var k=0; k<friendsList.length; k++){
+							if(friendsList[k].id === sectionFriends[j]){
+								friends.push(friendsList[k]);
+							}
+						}
+					}
+				}
+				return friends;
+			}
+		}
+		console.log('Course ' + courseName + 'not found');
+	},
 	consumeFriendsList : function(friendsList){
 		this.friendsList = friendsList;
 		for(var i=0; i< friendsList.length; i++){
