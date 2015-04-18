@@ -1,5 +1,10 @@
+var getNull = function() {
+	console.log("shit");
+}
+
 
 var getFriendList = function(callback) {
+	console.log(callback);
 	$.ajax({
 	  url: "https://gatech.courseoff.com/api/me/friends",
 	})
@@ -12,6 +17,7 @@ var getFriendList = function(callback) {
 };
 
 var getFriendScheduleById = function(id, callback) {
+	console.log(callback);
 	$.ajax({
 	  url: "https://gatech.courseoff.com/api/users/" + id + "/schedules",
 	})
@@ -42,7 +48,7 @@ var parseSchedule = function(schedule) {
 				if (!exist) {
 					newSchedule[term].push({
 						"major_ident": course["major_ident"], 
-						"course_ident": course["course_ident"]
+						"course_ident": course["course_ident"], 
 						"sections": {}
 					});
 					index = newSchedule[term].length - 1;

@@ -4,7 +4,7 @@ var userService = {
 	schedules: {},
 	ready: false,
 	init : function(){
-		getFriendList(this.consumeFriendsList);
+		getFriendList(this.consumeFriendsList.bind(this));
 	},
 	getFriendsList : function(){
 		return this.friendsList;
@@ -32,7 +32,7 @@ var userService = {
 	consumeFriendsList : function(friendsList){
 		this.friendsList = friendsList;
 		for(var i=0; i< friendsList.length; i++){
-			getFriendScheduleById( friendsList[i].id, this.consumeSchedule );
+			getFriendScheduleById( friendsList[i].id, this.consumeSchedule.bind(this) );
 		}
 	},
 	consumeSchedule: function(schedule){
@@ -49,14 +49,16 @@ var userService = {
 				processed.id = friendId;
 				processed.name = friendsList[i].name;
 				processed.info = schedule;
-				rawSchedules.push(processed);
+				this.rawSchedules.push(processed);
 			}
 		}
-		if( rawSchedules.length === friendsList.length ){
+		if( this.rawSchedules.length === this.friendsList.length ){
 			this.schedules = parseSchedule(this.rawSchedules);
+			console.log(this.rawSchedules);
 			this.ready = true;
 		}
 	}
 };
 
-//userService.init();
+userService.init();
+//console.log(userService.rawSchedules);
