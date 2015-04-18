@@ -15,11 +15,18 @@ $(document).ready(function() {
 
 	var year = "201508";
 
+	var fadeOwnSchedule = function() {
+		$(".course-box").each(function(i, d) {
+			$(d).css("opacity", 0.3);
+		});
+	}
+
 	var addFriendToggle = function(){
 	    $(".friends").find(".course-info-container").each(function(i){
 	        var toggleButton = $(this).find(".pull-right").first().append("<button style='float:right;top:0px' on-click='test()'>+</button>");
 	        var that = this;
 	        toggleButton.click(function(ev){
+	        	fadeOwnSchedule();
 	            $(that).find(".section").trigger("click");
 	            ev.preventDefault();
 	        })

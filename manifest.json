@@ -3,7 +3,7 @@
 
 	"name": "CourseOff Social",
 	"description": "To view friends who are taking/have taken the same class with you",
-	"version": "1.0.1",
+	"version": "1.1",
 	"author": "Jialiang (Jason) Zhang, Yiqi (Victor) Chen, Haoli Du", 
 	"short_name": "CS",
 	"content_scripts": [
