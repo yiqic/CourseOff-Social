@@ -36,14 +36,15 @@ var userService = {
 		}
 	},
 	consumeSchedule: function(schedule){
-		if(!schedule.owner_id){
+		var oneSchedule = schedule[0];
+		if(!oneSchedule.owner_id){
 			console.log('Structure for schedule is not as expected: ');
-			console.log(schedule);
+			console.log(oneSchedule);
 			return;
 		}
 		for(var i=0; i < friendsList[i].length; i++){
 			var friendId = friendsList[i].id;
-			if( schedule.owner_id === friendId ){
+			if( oneSchedule.owner_id === friendId ){
 				console.log('Consuming schedule for ' + friendsList[i].name);
 				var processed = {};
 				processed.id = friendId;
