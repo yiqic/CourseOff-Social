@@ -68,7 +68,7 @@ var addCourseInfoListener= function(){
         } else {
             console.log(abbr)
         }
-        
+        e.preventDefault();
     })
 }
 
@@ -93,8 +93,10 @@ var insertListener = function(event){
             popupBody.append("<div class='myFriends'>"+
                 "<h5>Friends Taken the course </h5>"+takenFrends+"</div>");
             }
-        };
+        }
 
+    } else if (event.animationName == "courseAdded") {
+        addCourseInfoListener();
     }
 }
 

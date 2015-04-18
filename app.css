@@ -1,36 +1,61 @@
 /* set up the keyframes; remember to create prefixed keyframes too! */
-/*@keyframes nodeInserted {  
+/*@keyframes popup {  
     from { opacity: 0.99; }
     to { opacity: 1; }  
 }*/
 
 /* Chrome, Safari, Opera */ 
-@-webkit-keyframes nodeInserted{
+@-webkit-keyframes popup{
   from { opacity: 0.99; }
     to { opacity: 1; }  
 }
-@-moz-keyframes nodeInserted {
+@-moz-keyframes popup {
  from { opacity: 0.99; }
     to { opacity: 1; }  
 }
-@-o-keyframes nodeInserted{
+@-o-keyframes popup{
   from { opacity: 0.99; }
     to { opacity: 1; }  
 }
-@keyframes nodeInserted {
+@keyframes popup {
   from { opacity: 0.99; }
     to { opacity: 1; }  
+}
+
+@-webkit-keyframes courseAdded{
+  from { opacity: 0.99; }
+    to { opacity: 1; }  
+}
+@-moz-keyframes courseAdded {
+ from { opacity: 0.99; }
+    to { opacity: 1; }  
+}
+@-o-keyframes courseAdded{
+  from { opacity: 0.99; }
+    to { opacity: 1; }  
+}
+@keyframes courseAdded {
+  from { opacity: 0.99; }
+    to { opacity: 1; }  
+}
+
+
+.course-info-container {
+     -webkit-animation: courseAdded 0.001s infinite; /* Safari 4+ */
+    -moz-animation:    courseAdded 0.001s infinite; /* Fx 5+ */
+    -o-animation:      courseAdded 0.001s infinite; /* Opera 12+ */
+    animation:         courseAdded 0.001s infinite; /* IE 10+, Fx 29+ */
 }
 
 
 .popover {
     /*background-color: red !important;*/
 /*    animation-duration: 0.001s !important;
-    animation-name: nodeInserted !important;*/
-    -webkit-animation: nodeInserted 0.001s infinite; /* Safari 4+ */
-    -moz-animation:    nodeInserted 0.001s infinite; /* Fx 5+ */
-    -o-animation:      nodeInserted 0.001s infinite; /* Opera 12+ */
-    animation:         nodeInserted 0.001s infinite; /* IE 10+, Fx 29+ */
+    animation-name: popup !important;*/
+    -webkit-animation: popup 0.001s infinite; /* Safari 4+ */
+    -moz-animation:    popup 0.001s infinite; /* Fx 5+ */
+    -o-animation:      popup 0.001s infinite; /* Opera 12+ */
+    animation:         popup 0.001s infinite; /* IE 10+, Fx 29+ */
 }
 
 
