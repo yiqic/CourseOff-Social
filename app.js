@@ -17,7 +17,7 @@ setTimeout(function(){
     } else if (semester == "Spring") {
         year = year + "01";
     }
-
+    console.log(year);
     $(".course-info-container").on("mouseover", function(e){
         var courseBar = $(e.target);
         var abbr="";
@@ -26,11 +26,22 @@ setTimeout(function(){
         } else {
             abbr = getAbbr(courseBar.find(".name").text());
         }
-        var friends = getFriendsName(userService.getFriendsByCourseName(year, abbr));
-        if (friends!=""){
-            console.log(friends);
-            courseBar.attr("title",friends);
+        if (abbr!=""){
+            var willTakeResult = userService.getFriendsByCourseName(year, abbr, false);
+            var takenResult = userService.getFriendsByCourseName(year, abbr, true);
+            console.log(willTakeResult,takenResult)
+            var friends = getFriendsName(willTakeResult.concat(takenResult));
+            // var takenFrends = getFriendsName(takenResult);
+
+            // var friends = 
+            if (friends!=""){
+                console.log(friends);
+                courseBar.attr("title",friends);
+            }
+        } else {
+            console.log(abbr)
         }
+        
     })
 }, 2000);
 
@@ -43,16 +54,21 @@ var insertListener = function(event){
         var refID = popupBody.find("em").first().html();
         var courseName = $(event.target).find(".title").html();
         var abbr = $(".course-box:hover").find(".course-content").text().split(" ").join("");
-        var willTakeResult = userService.getFriendsByCourseName(year, abbr);
-
+        var willTakeResult = userService.getFriendsByCourseName(year, abbr, false);
+        var takenResult = userService.getFriendsByCourseName(year, abbr, true);
         var willTakefriends = getFriendsName(willTakeResult);
-       
+        var takenFrends = getFriendsName(takenResult);
+        console.log(year, abbr);
         if(popupBody.find(".myFriends").length==0){
             if (willTakefriends!=""){
                 popupBody.append("<div class='myFriends'>"+
                 "<h5>Friends will take the course</h5>"+willTakefriends+"</div>");
             }
+            if (takenFrends!=""){
 
+            popupBody.append("<div class='myFriends'>"+
+                "<h5>Friends Taken the course </h5>"+takenFrends+"</div>");
+            }
         };
 
     }

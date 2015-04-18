@@ -51,9 +51,9 @@ var userService = {
 		}
 		if(past){
 			var allFriends = [];
-			for(var pastTerm in schedules){
+			for(var pastTerm in this.schedules){
 				if(Number(pastTerm) < Number(term)){
-					var friends = this.getFriendsByCourseNameHelper(schedules[pastTerm]);
+					var friends = this.getFriendsByCourseNameHelper(this.schedules[pastTerm], majorIdent, courseIdent);
 					for(var i=0; i<friends.length; i++){
 						allFriends.push(friends[i]);
 					}
@@ -61,10 +61,10 @@ var userService = {
 			}
 			return allFriends;
 		} else {
-			return this.getFriendsByCourseNameHelper(termObject);
+			return this.getFriendsByCourseNameHelper(termObject, majorIdent, courseIdent);
 		}
 	},
-	getFriendsByCourseNameHelper : function(termObject){
+	getFriendsByCourseNameHelper : function(termObject, majorIdent, courseIdent){
 		for(var t=0; t<termObject.length; t++){
 			if(termObject[t].major_ident === majorIdent
 				&& termObject[t].course_ident === courseIdent){
@@ -89,6 +89,7 @@ var userService = {
 				return friends;
 			}
 		}
+		return [];
 	},
 	consumeFriendsList : function(friendsList){
 		this.friendsList = friendsList;
