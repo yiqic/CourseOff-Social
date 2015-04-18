@@ -29,7 +29,7 @@ var userService = {
 		}
 
 	},
-	getFriendsByCourseName : function(term, courseName){
+	getFriendsByCourseName : function(term, courseName, past){
 		if(!this.ready){
 			console.log('Not ready when getFriendScheduleById');
 			return null;
@@ -49,7 +49,22 @@ var userService = {
 			console.log('Term not found: ' + term);
 			return null;
 		}
-		var courseFound = false;
+		if(past){
+			var allFriends = [];
+			for(var pastTerm in schedules){
+				if(Number(pastTerm) < Number(term)){
+					var friends = this.getFriendsByCourseNameHelper(schedules[pastTerm]);
+					for(var i=0; i<friends.length; i++){
+						allFriends.push(friends[i]);
+					}
+				}
+			}
+			return allFriends;
+		} else {
+			return this.getFriendsByCourseNameHelper(termObject);
+		}
+	},
+	getFriendsByCourseNameHelper : function(termObject){
 		for(var t=0; t<termObject.length; t++){
 			if(termObject[t].major_ident === majorIdent
 				&& termObject[t].course_ident === courseIdent){
@@ -74,7 +89,6 @@ var userService = {
 				return friends;
 			}
 		}
-		console.log('Course ' + courseName + ' not found');
 	},
 	consumeFriendsList : function(friendsList){
 		this.friendsList = friendsList;
