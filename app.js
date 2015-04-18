@@ -26,7 +26,7 @@ $(document).ready(function() {
 	        var toggleButton = $(this).find(".pull-right").first().append("<button style='float:right;top:0px'>+</button>");
 	        var that = this;
 	        toggleButton.click(function(ev){
-	        	fadeOwnSchedule();
+	        	// fadeOwnSchedule();        // removed since it is unable to keep courses that you and your friend are both taking
 	            $(that).find(".section").trigger("click");
 	            ev.preventDefault();
 	        })
