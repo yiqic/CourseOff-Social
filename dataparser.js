@@ -1,7 +1,3 @@
-var getNull = function() {
-	console.log("shit");
-}
-
 
 var getFriendList = function(callback) {
 	$.ajax({
