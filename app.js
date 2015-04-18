@@ -11,6 +11,26 @@ $(".course-info-container").on("mouseover", function(e){
     }
 })
 
+$(".nav[data-visible=term]").on("change", function(e){
+    console.log("aeg");
+})
+
+setTimeout(function(){
+
+var term = $(".nav[data-visible=term]").find("a").first().text().split(" ");
+var year = term[1];
+var semester = term[0];
+if(semester == "Fall"){
+    year= year+"08";
+} else if (semester == "Summer") {
+    year = year + "05";
+} else if (semester == "Spring") {
+    year = year + "01";
+}
+console.log(year);
+}, 2000);
+
+// console.log(year);
 var getAbbr = function(name){
     return name.split("-")[0].slice(1,-1).split(" ").join("-");
 }
