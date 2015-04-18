@@ -51,10 +51,10 @@ var userService = {
 		}
 		var courseFound = false;
 		for(var t=0; t<termObject.length; t++){
-			if(termObject.major_ident === major_ident
-				&& termObject.course_ident === courseIdent){
+			if(termObject[t].major_ident === majorIdent
+				&& termObject[t].course_ident === courseIdent){
 				courseFound = true;
-				var sections = termObject.sections;
+				var sections = termObject[t].sections;
 				if(!sections){
 					console.log('Sections not defined for course: ' + courseName);
 					return null;
@@ -64,9 +64,9 @@ var userService = {
 				for(var i=0; i<sectionKeys.length; i++){
 					var sectionFriends = sections[sectionKeys[i]];
 					for(var j=0; j<sectionFriends.length; j++){
-						for(var k=0; k<friendsList.length; k++){
-							if(friendsList[k].id === sectionFriends[j]){
-								friends.push(friendsList[k]);
+						for(var k=0; k<this.friendsList.length; k++){
+							if(this.friendsList[k].id === sectionFriends[j]){
+								friends.push(this.friendsList[k]);
 							}
 						}
 					}
@@ -74,7 +74,7 @@ var userService = {
 				return friends;
 			}
 		}
-		console.log('Course ' + courseName + 'not found');
+		console.log('Course ' + courseName + ' not found');
 	},
 	consumeFriendsList : function(friendsList){
 		this.friendsList = friendsList;

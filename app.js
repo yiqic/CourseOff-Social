@@ -14,11 +14,11 @@ $(".course-info-container").on("mouseover", function(e){
 $(".nav[data-visible=term]").on("change", function(e){
     console.log("aeg");
 })
-
+var year;
 setTimeout(function(){
 
 var term = $(".nav[data-visible=term]").find("a").first().text().split(" ");
-var year = term[1];
+year = term[1];
 var semester = term[0];
 if(semester == "Fall"){
     year= year+"08";
@@ -38,14 +38,22 @@ var getAbbr = function(name){
 var insertListener = function(event){
         // console.log("eventCatched!")
     if (event.animationName == "nodeInserted") {
-        var friends = "Jason Zhang, Haoli Du, Victor Chen";
+        
         var popupBody = $(event.target).find('.body');
         var refID = popupBody.find("em").first().html();
         var courseName = $(event.target).find(".title").html();
         // console.log(courseName, refID);
-        var abbr = $(".course-box:hover").find(".course-content").text();
-        console.log(abbr.split(" ").join(""));
-
+        var abbr = $(".course-box:hover").find(".course-content").text().split(" ").join("");
+        // console.log(abbr.split(" ").join(""));
+        var results = userService.getFriendsByCourseName(year, abbr);
+        var friends;
+        if (results){
+            friends = results.map(function(d){
+                return d.name;
+            }).join(", ")
+        }
+         // ="";userService.getFriendsByCourseName(year, abbr)
+        // ) ;
         if(popupBody.find(".myFriends").length==0){
             popupBody.append("<div class='myFriends'>"+
                 "<h5>Friends will take the course</h5>"+friends+"</div>");
@@ -55,6 +63,9 @@ var insertListener = function(event){
 
     }
 }
+
+
+
 document.addEventListener("animationstart", insertListener, false); // standard + firefox
 document.addEventListener("MSAnimationStart", insertListener, false); // IE
 document.addEventListener("webkitAnimationStart", insertListener, false); // Chrome + Safari
