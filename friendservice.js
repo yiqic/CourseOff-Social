@@ -63,7 +63,7 @@ var userService = {
 		} else {
 			var allFriends = [];
 			for(var pastTerm in this.schedules){
-				if(Number(pastTerm) > Number(term)){
+				if(Number(pastTerm) >= Number(term)){
 					var friends = this.getFriendsByCourseNameHelper(this.schedules[pastTerm], majorIdent, courseIdent);
 					for(var i=0; i<friends.length; i++){
 						allFriends.push(friends[i]);

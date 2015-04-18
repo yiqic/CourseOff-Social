@@ -36,14 +36,69 @@ setTimeout(function(){
             }, 1000);
         })
     })
+    var atlSelect = $(".nav[data-visible=user]").find(".item");
+    atlSelect.each(function(i){
+        $(this).on("click", function(){
+            setTimeout(function(){
+                // addCourseInfoListener();
+                // findCurrentTerm();
+                addFriendToggle();
+            }, 1000);
+        })
+    })
+    
+    var newAtlSelect = $(".nav[data-visible=user]").find(".li-icon")
+    console.log(newAtlSelect)
+    newAtlSelect.click(function(){
+        console.log("found!")
+        setTimeout(function(){
+                // addCourseInfoListener();
+                // findCurrentTerm();
+                addFriendToggle();
+            }, 1000);
+    })
+
     addCourseInfoListener();
     findCurrentTerm();
-
+    addFriendToggle();
     
 }, 2000);
 
+
+var addFriendToggle = function(){
+    $(".friends").find(".course-info-container").each(function(i){
+        var toggleButton = $(this).find(".pull-right").first().append("<button style='float:right;top:0px' on-click='test()'>+</button>");
+        var that = this;
+        toggleButton.click(function(ev){
+            // console.log("test");
+            // console.log($(that).find(".section")); click
+            // $(that).find(".section").first().trigger("mouseenter");
+            // console.log('entered!')
+            // $(that).find(".section").first().trigger("mousemove");
+            $(that).find(".section").trigger("click");
+            // $(that).find(".section").first().trigger("mouseleave");
+            // $(that).find(".section").each(function(){
+            //     console.log(this);
+            //     $(this).trigger("click");
+            // })
+            ev.preventDefault();
+        })
+    // toggleButton.hover(function(e) {
+    //     // mouseenter($(that).find(".section").first());
+    //     // console.log('e')
+    //     // $(that).find(".section").trigger(e.type);
+    // })
+        // toggleButton.on('mouseenter mouseleave', function(e) {
+
+        // })
+
+    })
+}
+var test = function(){
+    console.log('test')
+}
 var addCourseInfoListener= function(){
-    $(".course-info-container").on("mouseover", function(e){
+    $(".course-list").find(".course-info-container").on("mouseover", function(e){
         var courseBar = $(e.target);
         var abbr="";
         if(courseBar.hasClass('name')){
@@ -54,8 +109,14 @@ var addCourseInfoListener= function(){
         if (abbr!=""){
             var willTakeResult = userService.getFriendsByCourseName(year, abbr, false);
             var takenResult = userService.getFriendsByCourseName(year, abbr, true);
-            console.log(willTakeResult,takenResult)
-            var friends = getFriendsName(willTakeResult.concat(takenResult));
+            console.log(willTakeResult,takenResult);
+            var friends;
+            if (willTakeResult){
+                friends = getFriendsName(willTakeResult.concat(takenResult));
+            } else {
+                friends = getFriendsName(takenResult);
+            }
+            
             // var takenFrends = getFriendsName(takenResult);
 
             // var friends = 
@@ -73,7 +134,7 @@ var addCourseInfoListener= function(){
 }
 
 var insertListener = function(event){
-    if (event.animationName == "nodeInserted") {
+    if (event.animationName == "popup") {
         var popupBody = $(event.target).find('.body');
         var refID = popupBody.find("em").first().html();
         var courseName = $(event.target).find(".title").html();
