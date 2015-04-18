@@ -56,4 +56,5 @@ var parseSchedule = function(schedule) {
 			});
 		});
 	});
+	return newSchedule;
 }
