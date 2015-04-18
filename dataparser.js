@@ -4,7 +4,6 @@ var getNull = function() {
 
 
 var getFriendList = function(callback) {
-	console.log(callback);
 	$.ajax({
 	  url: "https://gatech.courseoff.com/api/me/friends",
 	})
@@ -17,12 +16,11 @@ var getFriendList = function(callback) {
 };
 
 var getFriendScheduleById = function(id, callback) {
-	console.log(callback);
 	$.ajax({
 	  url: "https://gatech.courseoff.com/api/users/" + id + "/schedules",
 	})
 	.done(function(data) {
-		callback(data);
+		callback(id, data);
 	})
 	.error(function() {
 		alert("unable to get schedule of a friend");
@@ -33,7 +31,7 @@ var parseSchedule = function(schedule) {
 	var newSchedule = {};
 	$.each(schedule, function(i1, friend) {
 		$.each(friend["info"], function(i2, term) {
-			if (!(term in newSchedule.keys())) {
+			if (!(term in newSchedule)) {
 				newSchedule[term] = [];
 			}
 			$.each(term["courses"], function(i3, course) {
@@ -54,7 +52,7 @@ var parseSchedule = function(schedule) {
 					index = newSchedule[term].length - 1;
 				}
 				$.each(course["sections"], function(i4, section) {
-					if (!(section in newSchedule[term][index].keys())) {
+					if (!(section in newSchedule[term][index])) {
 						newSchedule[term][index]["sections"][section] = []
 					}
 					newSchedule[term][index]["sections"][section].push(friend["id"]);
