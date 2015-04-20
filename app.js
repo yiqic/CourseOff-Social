@@ -1,3 +1,20 @@
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-62008251-1']);
+_gaq.push(['_gat._forceSSL']); 
+_gaq.push(['_trackPageview']);
+
+(function() {
+    console.log("loaded");
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  ga.id="gad";
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+var trackFriendShown = function(e) {
+    console.log(e)
+_gaq.push(['_trackEvent', e, 'clicked']);
+};
 
 $(document).ready(function() {
 	var findCurrentTerm = function(){
@@ -72,13 +89,15 @@ $(document).ready(function() {
 	        var willTakefriends = getFriendsName(willTakeResult).join("<br>");
 	        var takenFrends = getFriendsName(takenResult).join("<br>");
 	        if(popupBody.find(".myFriends").length==0){
+                
 	            if (willTakefriends!=""){
+                    // trackFriendShown("WillTake");
 	                popupBody.append("<div class='myFriends'>"+
 	                "<h5>Friends will take the course</h5>"+willTakefriends+"</div>");
 	            }
 	            if (takenFrends!=""){
-
-	            popupBody.append("<div class='myFriends'>"+
+                    // trackFriendShown("Taken");
+                    popupBody.append("<div class='myFriends'>"+
 	                "<h5>Friends Taken the course </h5>"+takenFrends+"</div>");
 	            }
 	        }
@@ -98,31 +117,35 @@ $(document).ready(function() {
 	            }, 1000);
 	        })
 	    })
-	    var atlSelect = $(".nav[data-visible=user]").find(".item");
+	    var atlSelect = $(".nav[data-visible=user]").find("li.remove-list-item.visible");
 	    atlSelect.each(function(i){
-	        $(this).on("click", function(){
+	        $(this).on("click", function(ev){
 	            setTimeout(function(){
 	                addFriendToggle();
 	            }, 1000);
+                ev.preventDefault();
 	        })
 	    })
 	    
 	    var newAtlSelect = $(".nav[data-visible=user]").find(".li-icon")
-	    newAtlSelect.click(function(){
+	    newAtlSelect.click(function(ev){
 	        setTimeout(function(){
 	                addFriendToggle();
 	            }, 1000);
+            ev.preventDefault()
 	    })
 
 	    addCourseInfoListener();
 	    findCurrentTerm();
 	    addFriendToggle();
-	    
+
 	// }, 2000);
 
 	document.addEventListener("animationstart", insertListener, false); // standard + firefox
 	document.addEventListener("MSAnimationStart", insertListener, false); // IE
 	document.addEventListener("webkitAnimationStart", insertListener, false); // Chrome + Safari
+
+
 });
 
 var getFriendsName = function(results){
