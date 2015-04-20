@@ -34,16 +34,16 @@ $(document).ready(function() {
 
 	var fadeOwnSchedule = function() {
 		$(".course-box").each(function(i, d) {
-			$(d).css("opacity", 0.3);
+			$(d).css("opacity", 0.2);
 		});
 	}
 
 	var addFriendToggle = function(){
 	    $(".friends").find(".course-info-container").each(function(i){
-	        var toggleButton = $(this).find(".pull-right").first().append("<button style='float:right;top:0px' on-click='test()'>+</button>");
+	        var toggleButton = $(this).find(".pull-right").first().append("<button style='float:right;top:0px'>+</button>");
 	        var that = this;
 	        toggleButton.click(function(ev){
-	        	fadeOwnSchedule();
+	        	// fadeOwnSchedule();        // removed since it is unable to keep courses that you and your friend are both taking
 	            $(that).find(".section").trigger("click");
 	            ev.preventDefault();
 	        })
@@ -64,9 +64,9 @@ $(document).ready(function() {
 	            var takenResult = userService.getFriendsByCourseName(year, abbr, true);
 	            var friends;
 	            if (willTakeResult){
-	                friends = getFriendsName(willTakeResult.concat(takenResult));
+	                friends = getFriendsName(willTakeResult.concat(takenResult)).filter(function(item, pos, self) { return self.indexOf(item) == pos; });
 	            } else {
-	                friends = getFriendsName(takenResult);
+	                friends = getFriendsName(takenResult).filter(function(item, pos, self) { return self.indexOf(item) == pos; });
 	            }
 	            if (friends!=""){
 	                courseBar.attr("title",friends);
@@ -86,8 +86,8 @@ $(document).ready(function() {
 	        var abbr = $(".course-box:hover").find(".course-content").text().split(" ").join("");
 	        var willTakeResult = userService.getFriendsByCourseName(year, abbr, false);
 	        var takenResult = userService.getFriendsByCourseName(year, abbr, true);
-	        var willTakefriends = getFriendsName(willTakeResult).join("<br>");
-	        var takenFrends = getFriendsName(takenResult).join("<br>");
+	        var willTakefriends = getFriendsName(willTakeResult).filter(function(item, pos, self) { return self.indexOf(item) == pos; }).join("<br>");
+	        var takenFrends = getFriendsName(takenResult).filter(function(item, pos, self) { return self.indexOf(item) == pos; }).join("<br>");
 	        if(popupBody.find(".myFriends").length==0){
                 
 	            if (willTakefriends!=""){
@@ -108,15 +108,16 @@ $(document).ready(function() {
 	}
 
 	// setTimeout(function(){
-	    var courseSelect = $(".nav[data-visible=term]").find("a:not([data-toggle])");
-	    courseSelect.each(function(i){
-	        $(this).on("click", function(){
-	            setTimeout(function(){
-	                addCourseInfoListener();
-	                findCurrentTerm();
-	            }, 1000);
-	        })
-	    })
+
+    var courseSelect = $(".nav[data-visible=term]").find("a:not([data-toggle])");
+    courseSelect.each(function(i){
+        $(this).on("click", function(){
+            setTimeout(function(){
+                addCourseInfoListener();
+                findCurrentTerm();
+            }, 1000);
+        })
+    })
 	    var atlSelect = $(".nav[data-visible=user]").find("li.remove-list-item.visible");
 	    atlSelect.each(function(i){
 	        $(this).on("click", function(ev){
@@ -127,18 +128,16 @@ $(document).ready(function() {
 	        })
 	    })
 	    
-	    var newAtlSelect = $(".nav[data-visible=user]").find(".li-icon")
-	    newAtlSelect.click(function(ev){
-	        setTimeout(function(){
-	                addFriendToggle();
-	            }, 1000);
-            ev.preventDefault()
-	    })
+    var newAtlSelect = $(".nav[data-visible=user]").find(".li-icon")
+    newAtlSelect.click(function(){
+        setTimeout(function(){
+                addFriendToggle();
+            }, 1000);
+    })
 
-	    addCourseInfoListener();
-	    findCurrentTerm();
-	    addFriendToggle();
-
+    addCourseInfoListener();
+    findCurrentTerm();
+    addFriendToggle();
 	// }, 2000);
 
 	document.addEventListener("animationstart", insertListener, false); // standard + firefox

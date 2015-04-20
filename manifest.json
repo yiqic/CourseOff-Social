@@ -3,12 +3,12 @@
 
 	"name": "CourseOff Social",
 	"description": "To view friends who are taking/have taken the same class with you",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"author": "Jialiang (Jason) Zhang, Yiqi (Victor) Chen, Haoli Du", 
 	"short_name": "CS",
 	"content_scripts": [
 	    {
-	      "matches": ["https://gatech.courseoff.com/*"],
+	      "matches": ["https://*.courseoff.com/workspace*"],
 	      "css": ["app.css"],
 	      "js": ["jquery-1.11.2.min.js", 
 	      	"dataparser.js", 
@@ -28,8 +28,9 @@
 	},
 
 	"permissions": [
-		"tabs", "https://gatech.courseoff.com/*"
+		"tabs", "https://*.courseoff.com/*"
 	],
 	
 	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
+
 }
