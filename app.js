@@ -47,9 +47,9 @@ $(document).ready(function() {
 	            var takenResult = userService.getFriendsByCourseName(year, abbr, true);
 	            var friends;
 	            if (willTakeResult){
-	                friends = getFriendsName(willTakeResult.concat(takenResult));
+	                friends = getFriendsName(willTakeResult.concat(takenResult)).filter(function(item, pos, self) { return self.indexOf(item) == pos; });
 	            } else {
-	                friends = getFriendsName(takenResult);
+	                friends = getFriendsName(takenResult).filter(function(item, pos, self) { return self.indexOf(item) == pos; });
 	            }
 	            if (friends!=""){
 	                courseBar.attr("title",friends);
@@ -69,8 +69,8 @@ $(document).ready(function() {
 	        var abbr = $(".course-box:hover").find(".course-content").text().split(" ").join("");
 	        var willTakeResult = userService.getFriendsByCourseName(year, abbr, false);
 	        var takenResult = userService.getFriendsByCourseName(year, abbr, true);
-	        var willTakefriends = getFriendsName(willTakeResult).join("<br>");
-	        var takenFrends = getFriendsName(takenResult).join("<br>");
+	        var willTakefriends = getFriendsName(willTakeResult).filter(function(item, pos, self) { return self.indexOf(item) == pos; }).join("<br>");
+	        var takenFrends = getFriendsName(takenResult).filter(function(item, pos, self) { return self.indexOf(item) == pos; }).join("<br>");
 	        if(popupBody.find(".myFriends").length==0){
 	            if (willTakefriends!=""){
 	                popupBody.append("<div class='myFriends'>"+

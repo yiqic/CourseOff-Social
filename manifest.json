@@ -8,7 +8,7 @@
 	"short_name": "CS",
 	"content_scripts": [
 	    {
-	      "matches": ["https://gatech.courseoff.com/*"],
+	      "matches": ["https://*.courseoff.com/workspace*"],
 	      "css": ["app.css"],
 	      "js": ["jquery-1.11.2.min.js", 
 	      	"dataparser.js", 
@@ -28,6 +28,6 @@
 	},
 
 	"permissions": [
-		"tabs", "https://gatech.courseoff.com/*"
+		"tabs", "https://*.courseoff.com/*"
 	]
 }
