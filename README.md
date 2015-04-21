@@ -1,6 +1,6 @@
 # CourseOff-Social
-To view friends who are taking/have taken the same class with you
 This chrome extension intends to enhance the social capacity of the CourseOff course planning tool. 
+
 Authors: Jialiang (Jason) Zhang, Yiqi (Victor) Chen, Haoli Du
 
 Product of 2015 Georgia Tech Appthon. Chrome Web Store link: 
