@@ -4,7 +4,7 @@ This chrome extension intends to enhance the social capacity of the CourseOff co
 Authors: Jialiang (Jason) Zhang, Yiqi (Victor) Chen, Haoli Du
 
 Product of 2015 Georgia Tech Appthon. Chrome Web Store link: 
-https://chrome.google.com/webstore/detail/courseoff-social/bneojdmikfiinpfajcmgcnpgogdpfhef
+http://goo.gl/d58dom
 
 1.See if your friends will take the same class with you! --- When you hover on a course, the popup tooltip will show friends who will take and have already taken this course. 
 
