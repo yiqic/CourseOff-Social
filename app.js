@@ -4,7 +4,6 @@ _gaq.push(['_gat._forceSSL']);
 _gaq.push(['_trackPageview']);
 
 (function () {
-	console.log("loaded");
 	var ga = document.createElement('script');
 	ga.type = 'text/javascript';
 	ga.async = true;
@@ -15,7 +14,7 @@ _gaq.push(['_trackPageview']);
 })();
 
 var trackFriendShown = function (e) {
-	console.log(e);
+	// console.log(e);
 	_gaq.push(['_trackEvent', e, 'clicked']);
 };
 
