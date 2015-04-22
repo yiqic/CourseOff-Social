@@ -3,17 +3,17 @@
 
 	"name": "CourseOff Social",
 	"description": "To view friends who are taking/have taken the same class with you",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"author": "Jialiang (Jason) Zhang, Yiqi (Victor) Chen, Haoli Du", 
 	"short_name": "CS",
 	"content_scripts": [
 	    {
-	      "matches": ["https://*.courseoff.com/workspace*"],
-	      "css": ["app.css"],
-	      "js": ["jquery-1.11.2.min.js", 
-	      	"dataparser.js", 
-	      	"friendservice.js", 
-	      	"app.js"
+			"matches": ["https://*.courseoff.com/workspace*"],
+			"css": ["app.css"],
+			"js": ["jquery-1.11.2.min.js", 
+				"dataparser.js", 
+				"friendservice.js", 
+				"app.js"
 	      ]
 	    }
 	],
@@ -24,7 +24,7 @@
 	},
 
 	"page_action": {
-		"default_icon": "cs38.png"
+		"default_icon": "img/cs38.png"
 	},
 
 	"permissions": [

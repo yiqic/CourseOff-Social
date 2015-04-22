@@ -70,11 +70,11 @@ $(document).ready(function () {
 				if (willTakeResult) {
 					friends = getFriendsName(willTakeResult.concat(takenResult)).filter(function (item, pos, self) {
 						return self.indexOf(item) == pos;
-					});
+					}).join(", ");
 				} else {
 					friends = getFriendsName(takenResult).filter(function (item, pos, self) {
 						return self.indexOf(item) == pos;
-					});
+					}).join(", ");
 				}
 				if (friends != "") {
 					courseBar.attr("title", friends);
