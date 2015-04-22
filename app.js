@@ -131,7 +131,7 @@ $(document).ready(function () {
 		});
 	});
 
-	var atlSelect = $(".nav[data-visible=user]").find("li.remove-list-item.visible");
+	var atlSelect = $(".nav[data-visible=user]").find("a.item");
 	atlSelect.each(function (i) {
 		$(this).on("click", function (ev) {
 			setTimeout(function () {
