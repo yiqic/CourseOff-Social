@@ -1,5 +1,5 @@
 var userService = {
-	debug: true,
+	debug: false,
 	friendsList: [],
 	rawSchedules: [],
 	schedules: {},
@@ -128,7 +128,6 @@ var userService = {
 		}
 		if (this.rawSchedules.length === this.friendsList.length) {
 			this.schedules = parseSchedule(this.rawSchedules);
-			console.log(this.rawSchedules);
 			this.ready = true;
 		}
 	}

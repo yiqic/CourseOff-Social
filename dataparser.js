@@ -25,6 +25,7 @@ var parseSchedule = function (schedule) {
 				newSchedule[term_ident] = [];
 			}
 			$.each(term["courses"], function (i3, course) {
+
 				var exist = false;
 				var index;
 				$.each(newSchedule[term_ident], function (i, d) {
@@ -42,7 +43,7 @@ var parseSchedule = function (schedule) {
 					index = newSchedule[term_ident].length - 1;
 				}
 				$.each(course["sections"], function (i4, section) {
-					if (!(section in newSchedule[term_ident][index])) {
+					if (!(section in newSchedule[term_ident][index]["sections"])) {
 						newSchedule[term_ident][index]["sections"][section] = [];
 					}
 					newSchedule[term_ident][index]["sections"][section].push(friend["id"]);
