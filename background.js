@@ -1,15 +1,12 @@
-// function checkForValidUrl(tabId, changeInfo, tab) {
-// // If the tabs url starts with "http://specificsite.com"...
-// if (tab.url.indexOf('courseoff.com/workspace') >= 0) {
-// 	// ... show the page action.
-// 	chrome.pageAction.show(tabId);
-// }
-// };
+function checkForValidUrl(tabId, changeInfo, tab) {
+if (tab.url.indexOf('courseoff.com/workspace') >= 0) {
+	// ... show the page action.
+	chrome.pageAction.show(tabId);
+}
+};
 
-// // Listen for any changes to the URL of any tab.
-// chrome.tabs.onUpdated.addListener(checkForValidUrl);
-
-// chrome.pageAction.setIcon({path:"img/cs38.png"});
+// Listen for any changes to the URL of any tab.
+chrome.tabs.onUpdated.addListener(checkForValidUrl);
 
 //Listen for event to track from content script
 chrome.runtime.onMessage.addListener(
@@ -25,8 +22,6 @@ chrome.runtime.onMessage.addListener(
         sendResponse({result: "bad"});
     }
 });
-
-
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-62008251-1']);
