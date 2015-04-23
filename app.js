@@ -69,6 +69,7 @@ $(document).ready(function () {
 	};
 
 	var insertListener = function (event) {
+		findCurrentTerm();
 		if (event.animationName == "popup") {
 			var popupBody = $(event.target).find('.body');
 			var refID = popupBody.find("em").first().html();
