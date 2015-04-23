@@ -1,23 +1,9 @@
-
-
-var trackFriendShown = function (e) {
-	// console.log(e);
-    chrome.runtime.sendMessage({
-        purpose: "trackEvent",
-        action: "trackFriends", 
-        opt_label: e, 
-        opt_value: ""}, function(response) {
-      console.log(response.result);
-    });
-	// _gaq.push(['_trackEvent', e, 'clicked']);
-};
-
 $(document).ready(function () {
-
-
 
 	//Adding 300px to the bottom of the screen
 	$('#workspace').append('<div style="height:300px"></div>');
+    
+    var year = "201508";
 	var findCurrentTerm = function () {
 		var term = $(".nav[data-visible=term]").find("a").first().text().split(" ");
 		year = term[1];
@@ -30,8 +16,6 @@ $(document).ready(function () {
 			year = year + "01";
 		}
 	};
-
-	var year = "201508";
 
 	var fadeOwnSchedule = function () {
 		$(".course-box").each(function (i, d) {
@@ -155,6 +139,15 @@ $(document).ready(function () {
 	document.addEventListener("webkitAnimationStart", insertListener, false); // Chrome + Safari
 
 });
+
+var trackFriendShown = function (e) {
+    chrome.runtime.sendMessage({
+        purpose: "trackEvent",
+        action: "trackFriends", 
+        opt_label: e, 
+        opt_value: ""}, function(response) {
+    });
+};
 
 var getFriendsName = function (results) {
 	if (results) {
