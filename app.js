@@ -1,24 +1,21 @@
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-62008251-1']);
-_gaq.push(['_gat._forceSSL']);
-_gaq.push(['_trackPageview']);
 
-(function () {
-	var ga = document.createElement('script');
-	ga.type = 'text/javascript';
-	ga.async = true;
-	ga.src = 'https://ssl.google-analytics.com/ga.js';
-	ga.id = "gad";
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(ga, s);
-})();
 
 var trackFriendShown = function (e) {
 	// console.log(e);
-	_gaq.push(['_trackEvent', e, 'clicked']);
+    chrome.runtime.sendMessage({
+        purpose: "trackEvent",
+        action: "trackFriends", 
+        opt_label: e, 
+        opt_value: ""}, function(response) {
+      console.log(response.result);
+    });
+	// _gaq.push(['_trackEvent', e, 'clicked']);
 };
 
 $(document).ready(function () {
+
+
+
 	//Adding 300px to the bottom of the screen
 	$('#workspace').append('<div style="height:300px"></div>');
 	var findCurrentTerm = function () {
@@ -55,7 +52,7 @@ $(document).ready(function () {
 	};
 
 	var addCourseInfoListener = function () {
-		$(".course-list").find(".course-info-container").on("mouseover", function (e) {
+		$(".course-list").find(".course-info-container").find(".name").on("mouseenter", function (e) {
 			var courseBar = $(e.target);
 			var abbr = "";
 			if (courseBar.hasClass('name')) {
@@ -78,6 +75,7 @@ $(document).ready(function () {
 				}
 				if (friends != "") {
 					courseBar.attr("title", friends);
+                    // trackFriendShown("course-info-bar")
 				} else {
 					courseBar.attr("title", "No friend found");
 				}
@@ -105,12 +103,12 @@ $(document).ready(function () {
 			if (popupBody.find(".myFriends").length == 0) {
 
 				if (willTakefriends != "") {
-					// trackFriendShown("WillTake");
+					trackFriendShown("WillTake");
 					popupBody.append("<div class='myFriends'>" +
 						"<h5>Friends will take the course</h5>" + willTakefriends + "</div>");
 				}
 				if (takenFrends != "") {
-					// trackFriendShown("Taken");
+					trackFriendShown("Taken");
 					popupBody.append("<div class='myFriends'>" +
 						"<h5>Friends Taken the course </h5>" + takenFrends + "</div>");
 				}
