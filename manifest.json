@@ -2,9 +2,9 @@
 	"manifest_version": 2,
 
 	"name": "CourseOff Social",
-	"description": "To view friends who are taking/have taken the same class with you",
-	"version": "1.0.6",
-	"author": "Jialiang (Jason) Zhang, Yiqi (Victor) Chen, Haoli Du", 
+	"description": "To view friends who are taking/have taken the same class",
+	"version": "1.0.7",
+	"author": "Jialiang (Jason) Zhang, Yiqi (Victor) Chen, Haoli (Henry) Du", 
 	"short_name": "CS",
 	"content_scripts": [
 	    {

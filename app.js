@@ -29,7 +29,7 @@ $(document).ready(function () {
 			var that = this;
 			toggleButton.click(function (ev) {
 				// fadeOwnSchedule();        // removed since it is unable to keep courses that you and your friend are both taking
-				$(that).find(".section").trigger("click");
+				$(that).find(".section").click();
 				ev.preventDefault();
 			});
 		});
@@ -133,7 +133,9 @@ $(document).ready(function () {
 
 	addCourseInfoListener();
 	findCurrentTerm();
-	addFriendToggle();
+	setTimeout(function () {
+		addFriendToggle();
+	}, 1000);
 
 	document.addEventListener("animationstart", insertListener, false); // standard + firefox
 	document.addEventListener("MSAnimationStart", insertListener, false); // IE
